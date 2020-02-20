@@ -20,8 +20,13 @@ namespace ECLK.MasterData.API.Controllers
 		}
 
 		#endregion
-
+		
+		
 		// GET: api/AdminDistricts
+		/// <summary>
+		/// List admin districts
+		/// </summary>
+		/// <returns></returns>
 		[HttpGet]
         public object Get()
         {
@@ -29,8 +34,13 @@ namespace ECLK.MasterData.API.Controllers
         }
 
         // GET: api/AdminDistricts/5
+		/// <summary>
+		/// Get admin district for the given ID
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
         [HttpGet("{id}", Name = "Get")]
-        public object Get(int id)
+		public object Get(int id)
         {
            return this._repository.Get("spADis", id);
         }
