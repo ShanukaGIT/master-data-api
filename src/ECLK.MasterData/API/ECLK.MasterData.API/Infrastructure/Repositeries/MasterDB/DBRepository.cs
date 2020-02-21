@@ -5,7 +5,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
 
 namespace ECLK.MasterData.API.Infrastructure.Repositeries.MasterDB
 {
@@ -91,7 +90,7 @@ namespace ECLK.MasterData.API.Infrastructure.Repositeries.MasterDB
 			da.Fill(result);
 
 			// return as a object serializing the data table 
-			return JsonConvert.SerializeObject(result, Formatting.Indented);
+			return result;
 		} 
 
 		/// <summary>
