@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using ECLK.MasterData.API.Infrastructure.Data;
 using Microsoft.Extensions.Configuration;
 
 namespace ECLK.MasterData.API.Infrastructure.Repositeries.MasterDB
@@ -56,7 +57,7 @@ namespace ECLK.MasterData.API.Infrastructure.Repositeries.MasterDB
 
 			parameters.Add(new SqlParameter("@id", ID));
 
-			return this.GetDataTable(storedProcedureName, parameters.ToArray());
+			return SQLData.GetDataTable(this._config, storedProcedureName, parameters.ToArray());
 		}
 
 		/// <summary>
@@ -74,7 +75,7 @@ namespace ECLK.MasterData.API.Infrastructure.Repositeries.MasterDB
 				parameters.Add(new SqlParameter(item.Key, item.Value));
 			}
 
-			return this.GetDataTable(storedProcedureName, parameters.ToArray());
+			return SQLData.GetDataTable(this._config,storedProcedureName, parameters.ToArray());
 		}
 
 		#endregion
@@ -88,58 +89,8 @@ namespace ECLK.MasterData.API.Infrastructure.Repositeries.MasterDB
 		/// <returns>Data table as json object</returns>
 		private object GetDataTable (string storedProcedureName)
 		{
-			return GetDataTable(storedProcedureName, null);
+			return SQLData.GetDataTable(this._config,storedProcedureName, null);
 		}
-
-		/// <summary>
-		/// Load the data to a data table for the given sp and parameters as a object
-		/// </summary>
-		/// <param name="storedProcedureName">Stored procedure for the adapter</param>
-		/// <param name="storedProcedureParameters">Parameters for the stored procedure</param>
-		/// <returns>Data table as json object</returns>
-		private object GetDataTable (string storedProcedureName, SqlParameter[] storedProcedureParameters)
-		{
-			DataTable result = new DataTable();
-
-			// get the adapter
-			SqlDataAdapter da = this.GetAdapter(storedProcedureName, storedProcedureParameters);
-			
-			// load data to the table
-			da.Fill(result);
-
-			// return as a object serializing the data table 
-			return result;
-		} 
-
-		/// <summary>
-		/// Creates a sql adapter with the connection for the passed stored procedure and parameters 
-		/// </summary>
-		/// <param name="storedProcedureName">Stored procedure for the adapter</param>
-		/// <param name="storedProcedureParameters">Parameters for the stored procedure</param>
-		/// <returns>SQL Adapter</returns>
-		private SqlDataAdapter GetAdapter(string storedProcedureName, SqlParameter[] storedProcedureParameters)
-		{
-
-			// Get the connection
-			SqlConnection _connection					= new SqlConnection(this._config.GetConnectionString("ConnectionString"));
-			SqlDataAdapter _adapter						= new SqlDataAdapter(storedProcedureName, _connection);
-			
-			// set up connection settings 
-			_adapter.SelectCommand.CommandTimeout		= 360;
-			_adapter.SelectCommand.CommandType			= CommandType.StoredProcedure;
-
-			// add parameters
-			if(storedProcedureParameters != null)
-			{
-				for (int i = 0; i < storedProcedureParameters.Length; i++)
-				{
-					_adapter.SelectCommand.Parameters.Add(storedProcedureParameters[i]);
-				}
-			}
-
-			return _adapter;
-		}
-
 		#endregion
 	}
 }
