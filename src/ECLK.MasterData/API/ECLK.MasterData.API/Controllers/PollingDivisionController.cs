@@ -40,12 +40,12 @@ namespace ECLK.MasterData.API.Controllers
 		/// </summary>
 		/// <param name="adminDistrictID"></param>
 		/// <returns></returns>
-        [HttpGet("{adminDistrictID}", Name = "GetPollingDivisionByAdminDistrictID")]
-		public object Get(int adminDistrictID)
+        [HttpGet("{electionDistrictID}", Name = "GetPollingDivisionByElectionDistrictID")]
+		public object Get(int electionDistrictID)
         {
 			List<KeyValuePair<string, object>> parameters =  new List<KeyValuePair<string, object>>();
 
-			parameters.Add(new KeyValuePair<string, object>("@edisid", adminDistrictID));
+			parameters.Add(new KeyValuePair<string, object>("@edisid", electionDistrictID));
 
            return this._repository.Get("spPollingDivisionByEDisVR", parameters);
         }
