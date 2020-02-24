@@ -59,6 +59,24 @@ namespace ECLK.MasterData.API.Infrastructure.Repositeries.MasterDB
 			return this.GetDataTable(storedProcedureName, parameters.ToArray());
 		}
 
+		/// <summary>
+		/// Gets a single object of the passed model for the provided SP 
+		/// </summary>
+		/// <param name="storedProcedureName">Stored procedure to be invoked</param>
+		/// <param name="ID">DB ID record</param>
+		/// <returns>Json object of the passed sp data</returns>
+		public object Get(string storedProcedureName, List<KeyValuePair<string, object>> sqlParameters)
+		{
+			List<SqlParameter>		parameters		= new List<SqlParameter>();
+
+			foreach (KeyValuePair<string, object> item in sqlParameters)
+			{
+				parameters.Add(new SqlParameter(item.Key, item.Value));
+			}
+
+			return this.GetDataTable(storedProcedureName, parameters.ToArray());
+		}
+
 		#endregion
 
 		#region Utility
