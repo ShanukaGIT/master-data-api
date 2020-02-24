@@ -10,11 +10,11 @@ namespace ECLK.MasterData.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AdminDistrictsController : BaseController<AdminDistrictsController>
+    public class AdminDistrictController : BaseController<AdminDistrictController>
     {
 		#region Constructor
 
-		public AdminDistrictsController (IDBRepository repository) : base(repository)
+		public AdminDistrictController (IDBRepository repository) : base(repository)
 		{
 
 		}
@@ -22,7 +22,7 @@ namespace ECLK.MasterData.API.Controllers
 		#endregion
 		
 		
-		// GET: api/AdminDistricts
+		// GET: api/AdminDistrict
 		/// <summary>
 		/// List admin districts
 		/// </summary>
@@ -33,16 +33,16 @@ namespace ECLK.MasterData.API.Controllers
 			return this._repository.Get("spADis");
         }
 
-        // GET: api/AdminDistricts/5
+        // GET: api/AdminDistrict/5
 		/// <summary>
 		/// Get admin district for the given ID
 		/// </summary>
 		/// <param name="id"></param>
 		/// <returns></returns>
-        [HttpGet("{id}", Name = "Get")]
-		public object Get(int id)
+        [HttpGet("{districtID}", Name = "GetAdminDistrictByDistrictID")]
+		public object Get(int districtID)
         {
-           return this._repository.Get("spADis", id);
+           return this._repository.Get("spADisByID", districtID);
         }
     }
 }
