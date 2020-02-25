@@ -18,7 +18,7 @@ namespace ECLK.MasterData.API.Infrastructure.Base
 		#endregion
 
 		#region Constructor
-		
+
 		/// <summary>
 		/// Loads controller with the db repository 
 		/// </summary>

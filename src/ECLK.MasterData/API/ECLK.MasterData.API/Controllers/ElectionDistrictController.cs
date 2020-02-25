@@ -27,8 +27,14 @@ namespace ECLK.MasterData.API.Controllers
 		/// <summary>
 		/// List election districts
 		/// </summary>
+		/// <remarks>
+		/// - Provides a full table information of the election districts.
+		/// - Empty list if not available.
+		/// </remarks>
 		/// <returns></returns>
 		[HttpGet]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public object Get()
         {
 			return this._repository.Get("spElectionDistrictAll");
@@ -36,11 +42,17 @@ namespace ECLK.MasterData.API.Controllers
 
         // GET: api/ElectionDistrict/5
 		/// <summary>
-		/// Get election district for the given ID
+		/// Get election district for the given admin district ID
 		/// </summary>
+		/// <remarks>
+		/// - Provides a full table information of the election districts by admin district ID.
+		/// - Empty list if not available.
+		/// </remarks>
 		/// <param name="adminDistrictID"></param>
 		/// <returns></returns>
-        [HttpGet("{adminDistrictID}", Name = "GetElectionDistrctByAdminDistrictID")]
+        [HttpGet("{adminDistrictID}")]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 		public object Get(int adminDistrictID)
         {
 			List<KeyValuePair<string, object>> parameters =  new List<KeyValuePair<string, object>>();

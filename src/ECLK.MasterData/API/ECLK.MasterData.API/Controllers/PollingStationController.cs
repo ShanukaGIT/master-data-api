@@ -22,13 +22,20 @@ namespace ECLK.MasterData.API.Controllers
 
 		#endregion
 
-        // GET: api/PollingDivision/5
+        // GET: api/PollingStation/2/20
 		/// <summary>
-		/// Get polling division for the given ID
+		/// Get polling stations for the given revision ID and polling district ID
 		/// </summary>
-		/// <param name="adminDistrictID"></param>
+		/// <remarks>
+		/// - Provides a full table information of the polling stations by polling district ID .
+		/// - Empty list if not available.
+		/// </remarks>
+		/// <param name="revisionID">Revision ID</param>
+		/// <param name="pollingDistrictID">Polling district ID</param>
 		/// <returns></returns>
-        [HttpGet]
+		[HttpGet("{revisionID}/{pollingDistrictID}")]		
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 		public object Get(int pollingDistrictID, int revisionID)
         {
 			List<KeyValuePair<string, object>> parameters =  new List<KeyValuePair<string, object>>();

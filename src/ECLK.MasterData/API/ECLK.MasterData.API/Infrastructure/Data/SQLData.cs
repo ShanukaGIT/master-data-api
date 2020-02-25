@@ -10,6 +10,12 @@ namespace ECLK.MasterData.API.Infrastructure.Data
 {
 	public class SQLData
 	{
+		/// <summary>
+		/// Converts the data table to the passed  Object modle list
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="dt"></param>
+		/// <returns></returns>
 		public static List < T > ConvertToList < T > (DataTable dt) {  
 			var columnNames = dt.Columns.Cast < DataColumn > ().Select(c => c.ColumnName.ToLower()).ToList();  
 			var properties = typeof(T).GetProperties();  
@@ -26,12 +32,21 @@ namespace ECLK.MasterData.API.Infrastructure.Data
 			}).ToList();  
 		}
 
+		/// <summary>
+		/// Gets the data set
+		/// </summary>
+		/// <param name="_config"></param>
+		/// <param name="storedProcedureName"></param>
+		/// <param name="storedProcedureParameters"></param>
+		/// <returns></returns>
 		internal static DataSet GetDataSet (IConfiguration _config, string storedProcedureName, SqlParameter[] storedProcedureParameters)
 		{
 			DataSet				result	= new DataSet();
 
+			// Get adapter 
 			SqlDataAdapter		da		= GetAdapter(_config, storedProcedureName, storedProcedureParameters);
 			
+			//fill
 			da.Fill(result);
 
 			return result;

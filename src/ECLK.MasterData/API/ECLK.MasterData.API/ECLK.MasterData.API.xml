@@ -1,0 +1,229 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ECLK.MasterData.API</name>
+    </assembly>
+    <members>
+        <member name="M:ECLK.MasterData.API.Controllers.AdminDistrictController.Get">
+            <summary>
+            List all admin districts
+            </summary>
+            <remarks>
+            - Provides a full table information of the admin districts .
+            - Empty list if not available.
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:ECLK.MasterData.API.Controllers.AdminDistrictController.Get(System.Int32)">
+            <summary>
+            Get admin district for the given district ID
+            </summary>
+            <remarks>
+            - Provides a full table information of the admin districts .
+            - Empty list if not available.
+            </remarks>
+            <param name="districtID">District ID to list Admin Districts By</param>
+            <returns></returns>
+        </member>
+        <member name="M:ECLK.MasterData.API.Controllers.DesignationController.Get">
+            <summary>
+            Gets the full list of designations
+            </summary>
+            <remarks>
+            - Provides a full table information of the designations.
+            - Empty list if not available.
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:ECLK.MasterData.API.Controllers.ElectionDistrictController.Get">
+            <summary>
+            List election districts
+            </summary>
+            <remarks>
+            - Provides a full table information of the election districts.
+            - Empty list if not available.
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:ECLK.MasterData.API.Controllers.ElectionDistrictController.Get(System.Int32)">
+            <summary>
+            Get election district for the given admin district ID
+            </summary>
+            <remarks>
+            - Provides a full table information of the election districts by admin district ID.
+            - Empty list if not available.
+            </remarks>
+            <param name="adminDistrictID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECLK.MasterData.API.Controllers.PollingDistrictController.Get(System.Int32,System.Int32)">
+            <summary>
+            Get polling districts for the given revision ID and polling division ID
+            </summary>
+            <remarks>
+            - Provides a full table information of the polling districts by revision ID and division ID.
+            - Empty list if not available.
+            </remarks>
+            <param name="revisionID">Revision ID for polling district</param>
+            <param name="pollingDivisionID">Polling Division ID ID for polling district</param>
+            <returns></returns>
+        </member>
+        <member name="M:ECLK.MasterData.API.Controllers.PollingDivisionController.Get(System.Int32)">
+            <summary>
+            List all polling divisions by election district ID
+            </summary>
+            <remarks>
+            - Provides a full table information of the polling divisions election district ID.
+            - Empty list if not available.
+            </remarks>
+            <param name="electionDistrictID">Election district ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:ECLK.MasterData.API.Controllers.PollingStationController.Get(System.Int32,System.Int32)">
+            <summary>
+            Get polling stations for the given revision ID and polling district ID
+            </summary>
+            <remarks>
+            - Provides a full table information of the polling stations by polling district ID .
+            - Empty list if not available.
+            </remarks>
+            <param name="revisionID">Revision ID</param>
+            <param name="pollingDistrictID">Polling district ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:ECLK.MasterData.API.Controllers.RevisionController.Get">
+            <summary>
+            List all  revisions
+            </summary>
+            <remarks>
+            - Provides a full table information of the revisions.
+            - Empty list if not available.
+            </remarks>
+            <returns></returns>
+        </member>
+        <member name="M:ECLK.MasterData.API.Controllers.VoterCountController.Get(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Get voter count grouped by polling stations for the given revision ID, election district ID, polling division ID, polling district ID, polling station ID
+            </summary>
+            <remarks>
+            - Provides a full table information of the polling stations voter count .
+            - Empty list if not available.
+            </remarks>
+            <param name="revisionID">Revision ID</param>
+            <param name="electionDistrictID">Election district ID, pass -1 for all</param>
+            <param name="pollingDivisionID">Polling division ID, pass -1 for all</param>
+            <param name="pollingDistrictID">Polling district ID, pass -1 for all</param>
+            <param name="pollingStationID">Polling station ID, pass -1 for all</param>
+            <returns></returns>
+        </member>
+        <member name="M:ECLK.MasterData.API.Infrastructure.Base.BaseController`1.#ctor(ECLK.MasterData.API.Infrastructure.Repositeries.MasterDB.IDBRepository)">
+            <summary>
+            Loads controller with the db repository 
+            </summary>
+            <param name="repository">DB Repository instance</param>
+        </member>
+        <member name="M:ECLK.MasterData.API.Infrastructure.Base.BaseController`1.#ctor(ECLK.MasterData.API.Infrastructure.Repositeries.MasterDB.IDBRepository,Microsoft.Extensions.Logging.ILogger{`0})">
+            <summary>
+            Loads controller with the db repository and the logger
+            </summary>
+            <param name="repository">DB Repository instance</param>
+            <param name="logger">Logger instance</param>
+        </member>
+        <member name="M:ECLK.MasterData.API.Infrastructure.Data.SQLData.ConvertToList``1(System.Data.DataTable)">
+            <summary>
+            Converts the data table to the passed  Object modle list
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECLK.MasterData.API.Infrastructure.Data.SQLData.GetDataSet(Microsoft.Extensions.Configuration.IConfiguration,System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            Gets the data set
+            </summary>
+            <param name="_config"></param>
+            <param name="storedProcedureName"></param>
+            <param name="storedProcedureParameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ECLK.MasterData.API.Infrastructure.Data.SQLData.GetDataTable(Microsoft.Extensions.Configuration.IConfiguration,System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            Load the data to a data table for the given sp and parameters as a object
+            </summary>
+            <param name="storedProcedureName">Stored procedure for the adapter</param>
+            <param name="storedProcedureParameters">Parameters for the stored procedure</param>
+            <returns>Data table as json object</returns>
+        </member>
+        <member name="M:ECLK.MasterData.API.Infrastructure.Data.SQLData.GetAdapter(Microsoft.Extensions.Configuration.IConfiguration,System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            Creates a sql adapter with the connection for the passed stored procedure and parameters 
+            </summary>
+            <param name="storedProcedureName">Stored procedure for the adapter</param>
+            <param name="storedProcedureParameters">Parameters for the stored procedure</param>
+            <returns>SQL Adapter</returns>
+        </member>
+        <member name="T:ECLK.MasterData.API.Infrastructure.Repositeries.MasterDB.DBRepository">
+            <summary>
+            DB Repository 
+            </summary>
+        </member>
+        <member name="M:ECLK.MasterData.API.Infrastructure.Repositeries.MasterDB.DBRepository.Get(System.String)">
+            <summary>
+            Get the list of the passed model as a object for the provided SP
+            </summary>
+            <param name="storedProcedureName"> Stored procedure to be invoked</param>
+            <returns>Json object of the passed sp data</returns>
+        </member>
+        <member name="M:ECLK.MasterData.API.Infrastructure.Repositeries.MasterDB.DBRepository.Get(System.String,System.Int32)">
+            <summary>
+            Gets a single object of the passed model for the provided SP 
+            </summary>
+            <param name="storedProcedureName">Stored procedure to be invoked</param>
+            <param name="ID">DB ID record</param>
+            <returns>Json object of the passed sp data</returns>
+        </member>
+        <member name="M:ECLK.MasterData.API.Infrastructure.Repositeries.MasterDB.DBRepository.Get(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.Object}})">
+            <summary>
+            Gets a single object of the passed model for the provided SP 
+            </summary>
+            <param name="storedProcedureName">Stored procedure to be invoked</param>
+            <param name="sqlParameters">SP parameter list as a key value pair</param>
+            <returns>Json object of the passed sp data</returns>
+        </member>
+        <member name="M:ECLK.MasterData.API.Infrastructure.Repositeries.MasterDB.DBRepository.GetDataTable(System.String)">
+            <summary>
+            Load the data to a data table for the given sp without parameters as a object
+            </summary>
+            <param name="storedProcedureName">Stored procedure for the adapter</param>
+            <returns>Data table as json object</returns>
+        </member>
+        <member name="T:ECLK.MasterData.API.Infrastructure.Repositeries.MasterDB.IDBRepository">
+            <summary>
+            DB Repository interface
+            </summary>
+        </member>
+        <member name="M:ECLK.MasterData.API.Infrastructure.Repositeries.MasterDB.IDBRepository.Get(System.String)">
+            <summary>
+            Get the list of the passed model as a object for the provided SP
+            </summary>
+            <param name="storedProcedureName"> Stored procedure to be invoked</param>
+            <returns>Json object of the passed sp data</returns>
+        </member>
+        <member name="M:ECLK.MasterData.API.Infrastructure.Repositeries.MasterDB.IDBRepository.Get(System.String,System.Int32)">
+            <summary>
+            Gets a single object of the passed model for the provided SP 
+            </summary>
+            <param name="storedProcedureName">Stored procedure to be invoked</param>
+            <param name="ID">DB ID record</param>
+            <returns>Json object of the passed sp data</returns>
+        </member>
+        <member name="M:ECLK.MasterData.API.Infrastructure.Repositeries.MasterDB.IDBRepository.Get(System.String,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.Object}})">
+            <summary>
+            Gets a single object of the passed model for the provided SP and its given parameters 
+            </summary>
+            <param name="storedProcedureName">Stored procedure to be invoked</param>
+            <param name="sqlParameters">SQL parameters for the db</param>
+            <returns>Json object of the passed sp data</returns>
+        </member>
+    </members>
+</doc>

@@ -21,26 +21,19 @@ namespace ECLK.MasterData.API.Controllers
 		}
 
 		#endregion
-		
-		
-		// GET: api/PollingDivision
-		/// <summary>
-		/// List polling division
-		/// </summary>
-		/// <returns></returns>
-		[HttpGet]
-        public object Get()
-        {
-			return this._repository.Get("spPDivByADisID");
-        }
 
-        // GET: api/PollingDivision/5
-		/// <summary>
-		/// Get polling division for the given ID
+        /// <summary>
+		/// List all polling divisions by election district ID
 		/// </summary>
-		/// <param name="adminDistrictID"></param>
+		/// <remarks>
+		/// - Provides a full table information of the polling divisions election district ID.
+		/// - Empty list if not available.
+		/// </remarks>
+		/// <param name="electionDistrictID">Election district ID</param>
 		/// <returns></returns>
-        [HttpGet("{electionDistrictID}", Name = "GetPollingDivisionByElectionDistrictID")]
+		[HttpGet("{electionDistrictID}")]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 		public object Get(int electionDistrictID)
         {
 			List<KeyValuePair<string, object>> parameters =  new List<KeyValuePair<string, object>>();

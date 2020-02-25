@@ -64,7 +64,7 @@ namespace ECLK.MasterData.API.Infrastructure.Repositeries.MasterDB
 		/// Gets a single object of the passed model for the provided SP 
 		/// </summary>
 		/// <param name="storedProcedureName">Stored procedure to be invoked</param>
-		/// <param name="ID">DB ID record</param>
+		/// <param name="sqlParameters">SP parameter list as a key value pair</param>
 		/// <returns>Json object of the passed sp data</returns>
 		public object Get(string storedProcedureName, List<KeyValuePair<string, object>> sqlParameters)
 		{

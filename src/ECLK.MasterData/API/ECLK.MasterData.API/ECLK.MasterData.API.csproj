@@ -4,7 +4,12 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\inetpub\wwwroot2\purnajith\ElectionCommision\master-data-api\src\ECLK.MasterData\API\ECLK.MasterData.API\ECLK.MasterData.API.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
+    <Folder Include="Infrastructure\Common\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

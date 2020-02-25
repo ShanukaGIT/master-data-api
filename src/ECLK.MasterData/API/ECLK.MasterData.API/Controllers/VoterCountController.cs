@@ -22,7 +22,23 @@ namespace ECLK.MasterData.API.Controllers
 
 		#endregion
 
-		[HttpGet]
+		// GET: api/VoterCount/2/16/2/2/3
+		/// <summary>
+		/// Get voter count grouped by polling stations for the given revision ID, election district ID, polling division ID, polling district ID, polling station ID
+		/// </summary>
+		/// <remarks>
+		/// - Provides a full table information of the polling stations voter count .
+		/// - Empty list if not available.
+		/// </remarks>
+		/// <param name="revisionID">Revision ID</param>
+		/// <param name="electionDistrictID">Election district ID, pass -1 for all</param>
+		/// <param name="pollingDivisionID">Polling division ID, pass -1 for all</param>
+		/// <param name="pollingDistrictID">Polling district ID, pass -1 for all</param>
+		/// <param name="pollingStationID">Polling station ID, pass -1 for all</param>
+		/// <returns></returns>
+		[HttpGet("{revisionID}/{electionDistrictID}/{pollingDivisionID}/{pollingDistrictID}/{pollingStationID}")]		
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status500InternalServerError)]
 		public object Get(int revisionID, 
 							int electionDistrictID, 
 							int pollingDivisionID, 
