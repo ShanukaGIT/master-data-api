@@ -5,4 +5,7 @@
 
 ## Functionality
 - Replicate the ECLK database table as API endpoints 
-- As all core logic is in SP we cannot use EF therefore 
+- As all core logic are in the SP's therefore we cannot use EF
+
+## Swagger Location
+/swagger/index.html
